@@ -7,7 +7,6 @@ export interface CartItem {
 	image: string;
 	quantity: number;
 }
-
 function createCartStore() {
 	const { subscribe, set, update } = writable<CartItem[]>([]);
 

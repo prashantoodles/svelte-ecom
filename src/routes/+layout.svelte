@@ -7,10 +7,11 @@
 	
 	let cartItems = $derived($cart);
 	let cartCount = $derived(cart.getCount(cartItems));
+	
 </script>
 
 <div class="min-h-screen bg-gray-50">
-	<Header {cartCount}
+	<Header {cartCount} {cartItems}
 		on:search={e => window.dispatchEvent(new CustomEvent('search', { detail: e.detail }))}
 		on:cartClick={() => window.dispatchEvent(new CustomEvent('cartClick'))}
 	/>
