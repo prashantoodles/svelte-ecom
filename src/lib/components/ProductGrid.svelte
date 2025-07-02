@@ -23,10 +23,6 @@
 	function handleAddToCart(event: CustomEvent) {
 		dispatch('addToCart', event.detail);
 	}
-	
-	function handleViewProduct(event: CustomEvent) {
-		dispatch('viewProduct', event.detail);
-	}
 </script>
 
 <div class="w-full">
@@ -64,7 +60,6 @@
 				<ProductCard
 					{product}
 					on:addToCart={handleAddToCart}
-					on:viewProduct={handleViewProduct}
 				/>
 			{/each}
 		</div>

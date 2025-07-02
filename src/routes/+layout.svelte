@@ -10,7 +10,10 @@
 </script>
 
 <div class="min-h-screen bg-gray-50">
-	<Header {cartCount} />
+	<Header {cartCount}
+		on:search={e => window.dispatchEvent(new CustomEvent('search', { detail: e.detail }))}
+		on:cartClick={() => window.dispatchEvent(new CustomEvent('cartClick'))}
+	/>
 	<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 		{@render children()}
 	</main>

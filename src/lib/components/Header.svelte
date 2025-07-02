@@ -44,6 +44,7 @@
 					<button
 						on:click={handleSearch}
 						class="absolute inset-y-0 left-0 pl-3 flex items-center"
+						aria-label="Search products"
 					>
 						<svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -57,6 +58,7 @@
 				<button
 					on:click={handleCartClick}
 					class="relative p-2 text-gray-700 hover:text-gray-900"
+					aria-label="Shopping cart"
 				>
 					<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01" />
@@ -68,7 +70,7 @@
 					{/if}
 				</button>
 				
-				<button class="text-gray-700 hover:text-gray-900">
+				<button class="text-gray-700 hover:text-gray-900" aria-label="User account">
 					<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
 					</svg>

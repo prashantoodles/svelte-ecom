@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import ProductGrid from '$lib/components/ProductGrid.svelte';
-	import { fetchProducts, type Product } from '$lib/services/productService';
-	import { cart } from '$lib/stores/cart';
+	import { fetchProducts, type Product } from '$lib/services/productService.ts';
+	import { cart } from '$lib/stores/cart.ts';
+	import { goto } from '$app/navigation';
 	
 	let products: Product[] = [];
 	let loading = true;
@@ -53,14 +54,16 @@
 		});
 	}
 	
-	function handleViewProduct(event: CustomEvent) {
-		const { product } = event.detail;
-		// Navigate to product detail page (to be implemented)
-		console.log('View product:', product);
-	}
-	
 	function handleRetry() {
 		loadProducts();
+	}
+	
+	function handleHeaderSearch(event: CustomEvent) {
+		handleSearch(event);
+	}
+	
+	function handleHeaderCartClick() {
+		goto('/cart');
 	}
 </script>
 
@@ -100,8 +103,9 @@
 				bind:value={searchQuery}
 				placeholder="Search products..."
 				class="w-full px-6 py-4 text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
+				on:input={() => handleSearch({ detail: { query: searchQuery } })}
 			/>
-			<button class="absolute right-3 top-1/2 transform -translate-y-1/2">
+			<button class="absolute right-3 top-1/2 transform -translate-y-1/2" aria-label="Search">
 				<svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
 				</svg>
@@ -122,7 +126,6 @@
 		{loading}
 		{error}
 		on:addToCart={handleAddToCart}
-		on:viewProduct={handleViewProduct}
 		on:retry={handleRetry}
 	/>
 </section>
@@ -161,3 +164,5 @@
 		</div>
 	</div>
 </section>
+
+<svelte:window on:search={handleHeaderSearch} on:cartClick={handleHeaderCartClick} />

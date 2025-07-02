@@ -20,10 +20,6 @@
 		dispatch('addToCart', { product });
 	}
 	
-	function viewProduct() {
-		dispatch('viewProduct', { product });
-	}
-	
 	// Function to render star rating
 	function renderStars(rate: number) {
 		const stars = [];
@@ -50,12 +46,13 @@
 <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
 	<!-- Product Image -->
 	<div class="relative h-48 overflow-hidden">
-		<img
-			src={product.image}
-			alt={product.title}
-			class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-			on:click={viewProduct}
-		/>
+		<a href="/product/{product.id}" class="block h-full">
+			<img
+				src={product.image}
+				alt={product.title}
+				class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+			/>
+		</a>
 		<div class="absolute top-2 right-2">
 			<span class="bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
 				{product.category}
@@ -65,9 +62,11 @@
 	
 	<!-- Product Info -->
 	<div class="p-4">
-		<h3 class="text-lg font-semibold text-gray-900 mb-2 line-clamp-2 hover:text-blue-600 cursor-pointer" on:click={viewProduct}>
-			{product.title}
-		</h3>
+		<a href="/product/{product.id}" class="block">
+			<h3 class="text-lg font-semibold text-gray-900 mb-2 line-clamp-2 hover:text-blue-600 transition-colors duration-200">
+				{product.title}
+			</h3>
+		</a>
 		
 		<p class="text-gray-600 text-sm mb-3 line-clamp-2">
 			{product.description}
